@@ -1,39 +1,38 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const path = require('path');
+// const path = require('path');
 
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
-  entry: '../src/index.js',
+  entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-  performance: {
-    maxAssetSize: 1000000,
-    hints: false,
-    maxEntrypointSize: 100000,
-  },
-  plugins: [new CleanWebpackPlugin(), new HtmlWebpackPlugin()],
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
+    // path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
-    contentBase: path.join(__dirname, './public'),
+    // contentBase: path.join(__dirname, './public'),
+    static: './dist',
     compress: true,
+    open: true,
+    hot: true,
     port: 8564,
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      name: 'index.html',
+      inject: false,
+      template: './dist/index.html',
+    }),
+  ],
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(?:ico|gif|png|jpe?g|svg)$/i,
+        // test: /\.(?:ico|gif|png|jpe?g|svg)$/i,
+        test: /.(ico|gif|png|jpe?g|svg)$/i,
         use: [
           'file-loader',
           {
@@ -45,6 +44,14 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
     ],
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
   },
 };
