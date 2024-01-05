@@ -38,7 +38,7 @@ $('.App-footer').append(
   '<p><em>Copyright <span class="year"></span> - <span class="footerCopy"></span></em></p>'
 );
 
-isIndex = true;
+const isIndex = true;
 
 function getFullYear() {
   const currentYear = new Date().getFullYear();
@@ -46,13 +46,22 @@ function getFullYear() {
 }
 
 function getFooterCopy(isIndex) {
-  const footerCopy = isIndex
-    ? 'Holberton School'
-    : 'Holberton School main dashboard';
+  let footerCopy = '';
+
+  if (isIndex) {
+    footerCopy = 'Holberton School';
+  } else {
+    footerCopy = 'Holberton School main dashboard';
+  }
+
   $('span.footerCopy').text(footerCopy);
 }
 
 function getLatestNotification() {
   const notification = '<strong>Urgent requirement</strong> - complete by EOD';
-  $('li.latestNotification').text(notification);
+  $('li.latestNotification').html(notification);
 }
+
+getFullYear();
+getFooterCopy(isIndex);
+getLatestNotification();
