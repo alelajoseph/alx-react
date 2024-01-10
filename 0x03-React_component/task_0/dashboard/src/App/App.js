@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Notifications from '../Notifications/Notifications';
 import { getLatestNotification } from '../utils';
@@ -8,7 +8,7 @@ import Footer from '../Footer/Footer';
 import CourseList from '../CourseList/CourseList';
 import './App.css';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
 
