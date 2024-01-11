@@ -19,18 +19,19 @@ const listNotifications = [
   { id: 2, type: 'urgent', value: 'New resume available' },
   { id: 3, type: 'urgent', html: { __html: getLatestNotification() } },
 ];
-
 class App extends React.Component {
   render() {
-    const { isLoggedIn } = this.props;
-
     return (
       <>
         <Notifications listNotifications={listNotifications} />
         <div className='App'>
           <Header />
           <div className='App-body'>
-            {isLoggedIn ? <CourseList listCourses={listCourses} /> : <Login />}
+            {this.props.isLoggedIn ? (
+              <CourseList listCourses={listCourses} />
+            ) : (
+              <Login />
+            )}
           </div>
           <div className='App-footer'>
             <Footer />
