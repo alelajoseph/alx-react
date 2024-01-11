@@ -28,13 +28,13 @@ describe('App Component', () => {
   });
 
   it('does not render CourseList by default', () => {
-    wrapper = shallow(<App isLoggedIn='false' />);
+    wrapper = shallow(<App isLoggedIn={false} />);
     expect(wrapper.find(CourseList)).toHaveLength(0);
   });
 });
 
 describe('isLoggedIn is true', () => {
-  const wrapper = shallow(<App isLoggedIn='true' />);
+  const wrapper = shallow(<App isLoggedIn={true} />);
   expect(wrapper.find(Login)).toHaveLength(0);
   expect(wrapper.find(CourseList)).toHaveLength(1);
 });
