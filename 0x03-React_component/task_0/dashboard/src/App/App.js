@@ -9,29 +9,6 @@ import CourseList from '../CourseList/CourseList';
 import './App.css';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-  }
-
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyPress);
-  }
-
-  componentWillUnmount() {
-    document.addEventListener('keydown', this.handleKeyPress);
-  }
-
-  handleKeyPress(e) {
-    const { logOut } = this.props;
-
-    if (e.ctrlKey && e.key === 'h') {
-      alert('Logging you out');
-      logOut();
-    }
-  }
-
   render() {
     const { isLoggedIn } = this.props;
 
@@ -66,12 +43,10 @@ class App extends React.Component {
 
 App.defaultProps = {
   isLoggedIn: false,
-  logOut: () => {},
 };
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
-  logOut: PropTypes.func,
 };
 
 export default App;
