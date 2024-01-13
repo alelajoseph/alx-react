@@ -2,15 +2,18 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Header from './Header';
 
-describe('Header component', () => {
+describe('<Header />', () => {
   it('renders without crashing', () => {
-    const wrapper = shallow(<Header />);
-    expect(wrapper.exists()).toBe(true);
+    shallow(<Header />);
   });
 
-  it('renders img and h1 tags', () => {
+  it('renders img tag', () => {
     const wrapper = shallow(<Header />);
-    expect(wrapper.find('div.App-header img')).toHaveLength(1);
-    expect(wrapper.find('div.App-header h1')).toHaveLength(1);
+    expect(wrapper.find('img')).toHaveLength(1);
+  });
+
+  it('renders h1 tag', () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper.find('h1')).toHaveLength(1);
   });
 });
