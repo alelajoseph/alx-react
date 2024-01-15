@@ -1,29 +1,46 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import CourseList from './CourseList';
+import CourseListRow from './CourseListRow';
 
-describe('CourseList component', () => {
-  it('renders without crashing', () => {
-    const wrapper = shallow(<CourseList />);
-    expect(wrapper.exists()).toBe(true);
+describe('<CourseList />', () => {
+  describe('Success render', () => {
+    it('renders CourseList component without crashing', () => {
+      shallow(<CourseList />);
+    });
   });
 
-  it('renders 5 different rows', () => {
-    const wrapper = shallow(<CourseList />);
-    expect(wrapper.find('CourseListRow')).toHaveLength(5);
-  });
-
-  it('renders correctly with an empty array or without listCourses property', () => {
-    const wrapper = shallow(<CourseList />);
-    expect(wrapper.find('.CourseList')).toHaveLength(1);
-  });
-
-  it('renders listCourses correctly', () => {
+  describe('With course list containing elements', () => {
+    let wrapper;
     const courses = [
-      { id: 1, name: 'Course 1', credit: 3 },
-      { id: 2, name: 'Course 2', credit: 4 },
+      { id: 101, type: 'default', value: 'New course available' },
+      { id: 102, type: 'urgent', value: 'New resume available' },
+      {
+        id: 103,
+        type: 'urgent',
+        html: { __html: 'Urgent requirement - complete by EOD' },
+      },
     ];
-    const wrapper = shallow(<CourseList listCourses={courses} />);
-    expect(wrapper.find('.CourseList li')).toHaveLength(courses.length);
+
+    beforeEach(() => {
+      wrapper = shallow(<CourseList listCourses={courses} />);
+    });
+
+    it('renders 5 different rows', () => {
+      expect(wrapper.find(CourseListRow)).toHaveLength(5);
+    });
+  });
+
+  describe('With listCourses empty', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(<CourseList listCourses={[]} />);
+    });
+
+    it('renders a row showing "No course available yet"', () => {
+      const row = wrapper.find('tr');
+      expect(row.text()).toEqual('No course available yet');
+    });
   });
 });

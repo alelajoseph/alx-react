@@ -1,7 +1,8 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import './Notifications.css';
-import NotificationItem from './NotificationItem';
 import NotificationItemShape from './NotificationItemShape';
+import NotificationItem from './NotificationItem';
+import './Notifications.css';
 
 export default function Notifications({ displayDrawer, listNotifications }) {
   function handleClose() {
@@ -14,12 +15,13 @@ export default function Notifications({ displayDrawer, listNotifications }) {
       {displayDrawer && (
         <div className='Notifications'>
           <p>
-            Here is the list of notifications
+            {listNotifications.length > 0 &&
+              'Here is the list of notifications'}
             <button aria-label='Close' onClick={handleClose}>
               <img src={require('../assets/close-icon.png')} alt='Close icon' />
             </button>
           </p>
-          {listNotifications === 0 ? (
+          {listNotifications.length === 0 ? (
             <p>No new notification for now</p>
           ) : (
             <ul>
@@ -30,7 +32,6 @@ export default function Notifications({ displayDrawer, listNotifications }) {
                     ? { value: notification.value }
                     : { html: notification.html }),
                 };
-
                 return <NotificationItem key={notification.id} {...props} />;
               })}
             </ul>
@@ -41,11 +42,12 @@ export default function Notifications({ displayDrawer, listNotifications }) {
   );
 }
 
-Notifications.defaultProps = {
-  displayDrawer: false,
-};
-
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
+};
+
+Notifications.defaultProps = {
+  displayDrawer: false,
+  listNotifications: [],
 };

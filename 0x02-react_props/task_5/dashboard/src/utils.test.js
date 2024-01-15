@@ -17,7 +17,7 @@ describe('getFooterCopy function', () => {
   });
 });
 
-describe('getLatestNotification fucntion', () => {
+describe('getLatestNotification function', () => {
   test('Check the required latest notification string', () => {
     const latestNotificationString =
       '<strong>Urgent requirement</strong> - complete by EOD';
