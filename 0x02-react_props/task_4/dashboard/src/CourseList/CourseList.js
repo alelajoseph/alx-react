@@ -2,7 +2,7 @@ import React from 'react';
 import CourseListRow from './CourseListRow';
 import './CourseList.css';
 
-export default function CourseList() {
+function CourseList() {
   return (
     <table id='CourseList'>
       <thead>
@@ -33,3 +33,5 @@ export default function CourseList() {
     </table>
   );
 }
+
+export default CourseList;

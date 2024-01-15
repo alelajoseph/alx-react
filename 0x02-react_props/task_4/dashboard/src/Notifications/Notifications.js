@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Notifications.css';
 import NotificationItem from './NotificationItem';
@@ -33,10 +34,10 @@ export default function Notifications({ displayDrawer }) {
   );
 }
 
-Notifications.defaultProps = {
-  displayDrawer: false,
-};
-
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
+};
+
+Notifications.defaultProps = {
+  displayDrawer: false,
 };

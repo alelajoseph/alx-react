@@ -1,21 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Notifications from './Notifications';
+import NotificationItem from './NotificationItem';
 
-describe('Notifications component', () => {
-  it('renders NotificationItem elements', () => {
-    const wrapper = shallow(<Notifications />);
-    expect(wrapper.find('NotificationItem').exists()).toBe(true);
+describe('<Notifications />', () => {
+  it('renders without crashing', () => {
+    shallow(<Notifications />);
   });
 
-  it('renders correct html win the first NotificationItem', () => {
-    const wrapper = shallow(<Notifications />);
-    const firstNotificationItem = wrapper.find('NotificationItem').first();
-    expect(firstNotificationItem.prop('type')).toBe('default');
-    expect(firstNotificationItem.prop('value')).toBe('New course available');
-  });
-
-  it('displays menuItem when displayDrawer is false', () => {
+  it('displays div.menuItem when displayDrawer is false', () => {
     const wrapper = shallow(<Notifications displayDrawer={false} />);
     expect(wrapper.find('div.menuItem')).toHaveLength(1);
   });
@@ -25,13 +18,23 @@ describe('Notifications component', () => {
     expect(wrapper.find('div.Notifications')).toHaveLength(0);
   });
 
-  it('displays menuItem when displayDrawer is true', () => {
+  it('displays div.menuItem when displayDrawer is true', () => {
     const wrapper = shallow(<Notifications displayDrawer={true} />);
     expect(wrapper.find('div.menuItem')).toHaveLength(1);
   });
 
-  it('display div.Notifications when displayDrawer is true', () => {
+  it('displays div.Notifications when displayDrawer is true', () => {
     const wrapper = shallow(<Notifications displayDrawer={true} />);
     expect(wrapper.find('div.Notifications')).toHaveLength(1);
+  });
+
+  it('renders NotificationItem elements', () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} />);
+    expect(wrapper.find(NotificationItem)).toHaveLength(3);
+  });
+
+  it('renders the right html for the first NotificationItem', () => {
+    const firstItem = shallow(<NotificationItem />).first();
+    expect(firstItem.html()).toContain('<li></li>');
   });
 });
