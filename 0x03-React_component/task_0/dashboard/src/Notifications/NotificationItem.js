@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function NotificationItem({ type, html, value }) {
+function NotificationItem({ type, html, value }) {
   return value ? (
     <li data-notification-type={type}>{value}</li>
   ) : (
     <li data-notification-type={type} dangerouslySetInnerHTML={html}></li>
   );
 }
-
-NotificationItem.defaultProps = {
-  type: 'default',
-};
 
 NotificationItem.propTypes = {
   html: PropTypes.shape({
@@ -20,3 +16,5 @@ NotificationItem.propTypes = {
   type: PropTypes.string,
   value: PropTypes.string,
 };
+
+export default NotificationItem;

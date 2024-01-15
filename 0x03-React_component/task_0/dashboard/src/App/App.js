@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Notifications from '../Notifications/Notifications';
-import { getLatestNotification } from '../utils';
 import Header from '../Header/Header';
 import Login from '../Login/Login';
-import Footer from '../Footer/Footer';
 import CourseList from '../CourseList/CourseList';
+import Footer from '../Footer/Footer';
+import { getLatestNotification } from '../utils';
 import './App.css';
 
 class App extends React.Component {
@@ -19,9 +19,9 @@ class App extends React.Component {
     ];
 
     const listNotifications = [
-      { id: 1, type: 'default', value: 'New course available' },
-      { id: 2, type: 'urgent', value: 'New resume available' },
-      { id: 3, type: 'urgent', html: { __html: getLatestNotification() } },
+      { id: 101, type: 'default', value: 'New course available' },
+      { id: 102, type: 'urgent', value: 'New resume available' },
+      { id: 103, type: 'urgent', html: { __html: getLatestNotification() } },
     ];
 
     return (
