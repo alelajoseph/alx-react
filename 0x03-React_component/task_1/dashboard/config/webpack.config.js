@@ -1,32 +1,21 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-/** @type {import('webpack').Configuration} */
 module.exports = {
+  mode: 'development',
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    path: path.resolve('./dist'),
   },
-  devServer: {
-    hot: true,
-    contentBase: path.resolve('./dist'),
-    compress: true,
-    port: 8564,
-  },
-  mode: 'development',
   module: {
     rules: [
       {
-        use: 'babel-loader',
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-      },
-      {
+        test: /\.css$/,
         use: ['style-loader', 'css-loader'],
-        test: /\.css$/i,
       },
       {
-        test: /\.(gif|png|jpe?g|svg)$/i,
+        test: /\.(png|jpe?g|gif)$/i,
         use: [
           'file-loader',
           {
@@ -38,10 +27,23 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
+      },
     ],
   },
-  resolve: {
-    extensions: ['.js', '.jsx', '.json'],
-  },
   devtool: 'inline-source-map',
+  devServer: {
+    static: path.resolve('./dist'),
+    compress: true,
+    port: 8564,
+  },
+  plugins: [new CleanWebpackPlugin()],
 };
