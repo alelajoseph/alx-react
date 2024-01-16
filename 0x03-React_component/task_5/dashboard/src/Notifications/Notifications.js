@@ -4,7 +4,7 @@ import NotificationItemShape from './NotificationItemShape';
 import NotificationItem from './NotificationItem';
 import './Notifications.css';
 
-class Notifications extends React.PureComponent {
+class Notifications extends React.Component {
   constructor(props) {
     super(props);
 
