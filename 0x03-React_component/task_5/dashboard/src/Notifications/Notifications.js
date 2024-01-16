@@ -4,12 +4,18 @@ import NotificationItemShape from './NotificationItemShape';
 import NotificationItem from './NotificationItem';
 import './Notifications.css';
 
-class Notifications extends React.Component {
+class Notifications extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.markAsRead = this.markAsRead.bind(this);
     this.handleClose = this.handleClose.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return (
+      nextProps.listNotifications.length > this.props.listNotifications.length
+    );
   }
 
   handleClose() {
