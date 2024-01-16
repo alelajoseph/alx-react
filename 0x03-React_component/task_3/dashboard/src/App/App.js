@@ -6,6 +6,8 @@ import Login from '../Login/Login';
 import CourseList from '../CourseList/CourseList';
 import Footer from '../Footer/Footer';
 import { getLatestNotification } from '../utils';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
+import BodySection from '../BodySection/BodySection';
 import './App.css';
 
 class App extends React.Component {
@@ -53,7 +55,18 @@ class App extends React.Component {
         <div className='App'>
           <Header />
           <div className='App-body'>
-            {isLoggedIn ? <CourseList listCourses={listCourses} /> : <Login />}
+            {isLoggedIn ? (
+              <BodySectionWithMarginBottom title='Course list'>
+                <CourseList listCourses={listCourses} />
+              </BodySectionWithMarginBottom>
+            ) : (
+              <BodySectionWithMarginBottom title='Log in to continue'>
+                <Login />
+              </BodySectionWithMarginBottom>
+            )}
+            <BodySection title='News from the School'>
+              <p>Great news coming soon!</p>
+            </BodySection>
           </div>
           <div className='App-footer'>
             <Footer />
