@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Notifications from './Notifications';
 import NotificationItem from './NotificationItem';
 
@@ -88,5 +88,79 @@ describe('<Notifications />', () => {
 
     expect(spy).toHaveBeenCalledWith('Notification 1 has been marked as read');
     spy.mockRestore();
+  });
+
+  it('does not rerender with the same list', () => {
+    const listNotifications = [
+      { id: 1, type: 'default', value: 'Notification 1' },
+      { id: 2, type: 'urgent', value: 'Notification 2' },
+    ];
+    const wrapper = mount(
+      <Notifications
+        displayDrawer={false}
+        listNotifications={listNotifications}
+      />
+    );
+
+    const shouldUpdateSpy = jest.spyOn(
+      Notifications.prototype,
+      'shouldComponentUpdate'
+    );
+
+    // Update with the same list
+    wrapper.setProps({
+      displayDrawer: true,
+      listNotifications: [...listNotifications],
+    });
+
+    expect(shouldUpdateSpy).toHaveBeenCalledWith(
+      {
+        displayDrawer: true,
+        listNotifications: listNotifications,
+      },
+      null,
+      {}
+    );
+    shouldUpdateSpy.mockRestore();
+  });
+
+  it('rerenders with a longer list', () => {
+    const listNotifications = [
+      { id: 1, type: 'default', value: 'Notification 1' },
+      { id: 2, type: 'urgent', value: 'Notification 2' },
+    ];
+    const wrapper = mount(
+      <Notifications
+        displayDrawer={false}
+        listNotifications={listNotifications}
+      />
+    );
+
+    const shouldUpdateSpy = jest.spyOn(
+      Notifications.prototype,
+      'shouldComponentUpdate'
+    );
+
+    const longerList = [
+      ...listNotifications,
+      { id: 3, type: 'default', value: 'Notification 3' },
+    ];
+
+    // Update with a longer list
+    wrapper.setProps({
+      displayDrawer: true,
+      listNotifications: longerList,
+    });
+
+    expect(shouldUpdateSpy).toHaveBeenCalledWith(
+      {
+        displayDrawer: true,
+        listNotifications: longerList,
+      },
+      null,
+      {}
+    );
+
+    shouldUpdateSpy.mockRestore();
   });
 });
