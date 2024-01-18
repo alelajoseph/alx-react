@@ -31,9 +31,11 @@ class Notifications extends React.Component {
 
     return (
       <>
-        <div className={css(styles.MenuItem)}>Your notifications</div>
+        <div className={`${css(styles.MenuItem)} menuItem`}>
+          Your notifications
+        </div>
         {displayDrawer && (
-          <div className={css(styles.Notifications)}>
+          <div className={`${css(styles.Notifications)} Notifications`}>
             <p className={css(styles.Paragraph)}>
               {listNotifications.length > 0 &&
                 'Here is the list of notifications'}
@@ -114,15 +116,7 @@ const styles = StyleSheet.create({
   },
 
   List: {
-    margin: '1em',
-  },
-
-  Default: {
-    color: 'blue',
-  },
-
-  Urgent: {
-    color: 'red',
+    margin: '0.5em',
   },
 });
 
