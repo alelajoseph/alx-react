@@ -52,7 +52,7 @@ class App extends React.Component {
     return (
       <>
         <Notifications listNotifications={listNotifications} />
-        <div className={css(styles.App)}>
+        <div className={css(styles.body)}>
           <Header />
           <div className='App-body'>
             {isLoggedIn ? (
@@ -68,7 +68,7 @@ class App extends React.Component {
               <p>Great news coming soon!</p>
             </BodySection>
           </div>
-          <div className={css(styles.Footer)}>
+          <div className={css(styles.footer)}>
             <Footer />
           </div>
         </div>
@@ -78,14 +78,14 @@ class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  App: {
+  body: {
     fontFamily: 'sans-serif',
     fontSize: '16px',
     display: 'flex',
     flexDirection: 'column',
   },
 
-  Footer: {
+  footer: {
     borderTop: '3px solid #E0354B',
     width: '98%',
     textAlign: 'center',
