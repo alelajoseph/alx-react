@@ -12,7 +12,7 @@ describe('<BodySectionWithMarginBottom />', () => {
   it('correctly renders BodySection component with props', () => {
     const props = {
       ttile: 'test title',
-      children: <p>test children node</p>,
+      children: <p>test children node</p>
     };
 
     const wrapper = shallow(<BodySectionWithMarginBottom {...props} />);

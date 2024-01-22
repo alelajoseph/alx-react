@@ -11,7 +11,7 @@ describe('<CourseListRow />', () => {
   it('renders one cell with colspan = 2 when textSecondCell does not exist (isHeader=true)', () => {
     const wrapper = shallow(
       <CourseListRow
-        isHeader={true}
+        isHeader
         textFirstCell='Course name'
         textSecondCell={null}
       />
@@ -24,7 +24,7 @@ describe('<CourseListRow />', () => {
   it('renders two cells when textSecondCell is present (isHeader=true)', () => {
     const wrapper = shallow(
       <CourseListRow
-        isHeader={true}
+        isHeader
         textFirstCell='Course name'
         textSecondCell={!null}
       />

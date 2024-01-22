@@ -72,7 +72,7 @@ describe('<App />', () => {
     });
 
     it('call logOut  and alerts when CTRL+H is pressed', () => {
-      const wrapper = shallow(<App isLoggedIn={true} logOut={mockLogout} />);
+      const wrapper = shallow(<App isLoggedIn logOut={mockLogout} />);
       const event = new KeyboardEvent('keydown', { ctrlKey: true, key: 'h' });
       document.dispatchEvent(event);
 
@@ -87,7 +87,7 @@ describe('<App isLoggedIn=true />', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<App isLoggedIn={true} />);
+      wrapper = shallow(<App isLoggedIn />);
     });
 
     it('does not display the Login component', () => {
@@ -95,7 +95,7 @@ describe('<App isLoggedIn=true />', () => {
     });
 
     it('renders the CourseList component', () => {
-      wrapper = shallow(<App isLoggedIn={true} />);
+      wrapper = shallow(<App isLoggedIn />);
       expect(wrapper.find(CourseList)).toHaveLength(1);
     });
   });

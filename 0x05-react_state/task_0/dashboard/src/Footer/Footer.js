@@ -1,7 +1,7 @@
 import React from 'react';
 import { getFullYear, getFooterCopy } from '../utils';
 
-export default function Footer() {
+export default function Footer () {
   const isIndex = true;
 
   return (

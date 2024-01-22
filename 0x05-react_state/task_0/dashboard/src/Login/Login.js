@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-export default function Login() {
+export default function Login () {
   return (
     <div className={css(styles.Div)}>
       <p>Login to access the full dashboard</p>
@@ -32,11 +32,11 @@ const styles = StyleSheet.create({
   Div: {
     '@media only screen and (max-width: 600px)': {
       display: 'flex',
-      flexDirection: 'column',
-    },
+      flexDirection: 'column'
+    }
   },
 
   Button: {
-    width: '35px',
-  },
+    width: '35px'
+  }
 });

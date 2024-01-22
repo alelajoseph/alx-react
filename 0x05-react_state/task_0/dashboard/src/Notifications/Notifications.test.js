@@ -33,7 +33,7 @@ describe('<Notifications />', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<Notifications displayDrawer={true} />);
+      wrapper = shallow(<Notifications displayDrawer />);
     });
 
     it('displays div.menuItem when displayDrawer is true', () => {
@@ -43,17 +43,17 @@ describe('<Notifications />', () => {
     it('displays div.Notifications when displayDrawer is true', () => {
       const notifications = [
         { id: 1, type: 'default', value: 'Notification 1' },
-        { id: 2, type: 'urgent', value: 'Notification 2' },
+        { id: 2, type: 'urgent', value: 'Notification 2' }
       ];
       wrapper = shallow(
-        <Notifications displayDrawer={true} listNotifications={notifications} />
+        <Notifications displayDrawer listNotifications={notifications} />
       );
       expect(wrapper.find('div.Notifications').exists()).toBe(true);
     });
 
     it('renders correctly if you pass an empty array', () => {
       wrapper = shallow(
-        <Notifications displayDrawer={true} listNotifications={[]} />
+        <Notifications displayDrawer listNotifications={[]} />
       );
       expect(wrapper.find(NotificationItem)).toHaveLength(0);
     });
@@ -67,17 +67,17 @@ describe('<Notifications />', () => {
   it('renders correctly and with the right number of NotificationItem when you pass a list of notifications', () => {
     const notifications = [
       { id: 1, type: 'default', value: 'Notification 1' },
-      { id: 2, type: 'urgent', value: 'Notification 2' },
+      { id: 2, type: 'urgent', value: 'Notification 2' }
     ];
     const wrapper = shallow(
-      <Notifications displayDrawer={true} listNotifications={notifications} />
+      <Notifications displayDrawer listNotifications={notifications} />
     );
     expect(wrapper.find(NotificationItem)).toHaveLength(2);
   });
 
   it('displays the message "No new notification for now" and "Here is the list of notifications" is not displayed', () => {
     const wrapper = shallow(
-      <Notifications displayDrawer={true} listNotifications={[]} />
+      <Notifications displayDrawer listNotifications={[]} />
     );
     expect(wrapper.text()).not.toContain('Here is the list of notifications');
     expect(wrapper.text()).toContain('No new notification for now');
@@ -98,7 +98,7 @@ describe('<Notifications />', () => {
   it('does not rerender with the same list', () => {
     const listNotifications = [
       { id: 1, type: 'default', value: 'Notification 1' },
-      { id: 2, type: 'urgent', value: 'Notification 2' },
+      { id: 2, type: 'urgent', value: 'Notification 2' }
     ];
     const wrapper = mount(
       <Notifications
@@ -115,13 +115,13 @@ describe('<Notifications />', () => {
     // Update with the same list
     wrapper.setProps({
       displayDrawer: true,
-      listNotifications: [...listNotifications],
+      listNotifications: [...listNotifications]
     });
 
     expect(shouldUpdateSpy).toHaveBeenCalledWith(
       {
         displayDrawer: true,
-        listNotifications: listNotifications,
+        listNotifications
       },
       null,
       {}
@@ -132,7 +132,7 @@ describe('<Notifications />', () => {
   it('rerenders with a longer list', () => {
     const listNotifications = [
       { id: 1, type: 'default', value: 'Notification 1' },
-      { id: 2, type: 'urgent', value: 'Notification 2' },
+      { id: 2, type: 'urgent', value: 'Notification 2' }
     ];
     const wrapper = mount(
       <Notifications
@@ -148,19 +148,19 @@ describe('<Notifications />', () => {
 
     const longerList = [
       ...listNotifications,
-      { id: 3, type: 'default', value: 'Notification 3' },
+      { id: 3, type: 'default', value: 'Notification 3' }
     ];
 
     // Update with a longer list
     wrapper.setProps({
       displayDrawer: true,
-      listNotifications: longerList,
+      listNotifications: longerList
     });
 
     expect(shouldUpdateSpy).toHaveBeenCalledWith(
       {
         displayDrawer: true,
-        listNotifications: longerList,
+        listNotifications: longerList
       },
       null,
       {}
@@ -186,7 +186,7 @@ describe('<Notifications />', () => {
     const handleHideDrawerMock = jest.fn();
     const wrapper = shallow(
       <Notifications
-        displayDrawer={true}
+        displayDrawer
         handleHideDrawer={handleHideDrawerMock}
       />
     );

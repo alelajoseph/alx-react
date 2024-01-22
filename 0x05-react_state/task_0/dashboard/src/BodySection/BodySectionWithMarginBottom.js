@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import BodySection from './BodySection';
 
 export class BodySectionWithMarginBottom extends Component {
-  render() {
+  render () {
     return (
       <div className={css(styles.bodySectionWithMargin)}>
         <BodySection {...this.props} />
@@ -15,13 +15,13 @@ export class BodySectionWithMarginBottom extends Component {
 
 const styles = StyleSheet.create({
   bodySectionWithMargin: {
-    marginBottom: '40px',
-  },
+    marginBottom: '40px'
+  }
 });
 
 BodySectionWithMarginBottom.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 export default BodySectionWithMarginBottom;

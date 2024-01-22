@@ -23,8 +23,8 @@ describe('<CourseList />', () => {
       {
         id: 103,
         type: 'urgent',
-        html: { __html: 'Urgent requirement - complete by EOD' },
-      },
+        html: { __html: 'Urgent requirement - complete by EOD' }
+      }
     ];
 
     beforeEach(() => {

@@ -6,13 +6,13 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve('./dist'),
+    path: path.resolve('./dist')
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -22,10 +22,10 @@ module.exports = {
             loader: 'image-webpack-loader',
             options: {
               bypassOnDebug: true,
-              disable: true,
-            },
-          },
-        ],
+              disable: true
+            }
+          }
+        ]
       },
       {
         test: /\.(js|jsx)$/,
@@ -33,17 +33,17 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
-        },
-      },
-    ],
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
+      }
+    ]
   },
   devtool: 'inline-source-map',
   devServer: {
     static: path.resolve('./dist'),
     compress: true,
-    port: 8564,
+    port: 8564
   },
-  plugins: [new CleanWebpackPlugin()],
+  plugins: [new CleanWebpackPlugin()]
 };

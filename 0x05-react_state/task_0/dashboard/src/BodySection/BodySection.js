@@ -3,7 +3,7 @@ import { StyleSheet, css } from 'aphrodite';
 import PropTypes from 'prop-types';
 
 export class BodySection extends Component {
-  render() {
+  render () {
     const { title, children } = this.props;
     return (
       <div className={`${css(styles.BodySection)} bodySection`}>
@@ -17,13 +17,13 @@ export class BodySection extends Component {
 const styles = StyleSheet.create({
   BodySection: {
     paddingLeft: '40px',
-    paddingRight: '40px',
-  },
+    paddingRight: '40px'
+  }
 });
 
 BodySection.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 export default BodySection;

@@ -11,7 +11,7 @@ import BodySection from '../BodySection/BodySection';
 import { StyleSheet, css } from 'aphrodite';
 
 class App extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = { displayDrawer: false };
 
@@ -20,7 +20,7 @@ class App extends Component {
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
   }
 
-  handleKeyPress(e) {
+  handleKeyPress (e) {
     const { logOut } = this.props;
 
     if (e.ctrlKey && e.key === 'h') {
@@ -29,40 +29,40 @@ class App extends Component {
     }
   }
 
-  handleDisplayDrawer() {
+  handleDisplayDrawer () {
     this.setState({
-      displayDrawer: true,
+      displayDrawer: true
     });
   }
 
-  handleHideDrawer() {
+  handleHideDrawer () {
     this.setState({
-      displayDrawer: false,
+      displayDrawer: false
     });
   }
 
-  componentDidMount() {
+  componentDidMount () {
     document.addEventListener('keydown', this.handleKeyPress);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     document.removeEventListener('keydown', this.handleKeyPress);
   }
 
-  render() {
+  render () {
     const { isLoggedIn } = this.props;
     const { displayDrawer } = this.state;
 
     const listCourses = [
       { id: 1, name: 'ES6', credit: 60 },
       { id: 2, name: 'Webpack', credit: 20 },
-      { id: 3, name: 'React', credit: 40 },
+      { id: 3, name: 'React', credit: 40 }
     ];
 
     const listNotifications = [
       { id: 101, type: 'default', value: 'New course available' },
       { id: 102, type: 'urgent', value: 'New resume available' },
-      { id: 103, type: 'urgent', html: { __html: getLatestNotification() } },
+      { id: 103, type: 'urgent', html: { __html: getLatestNotification() } }
     ];
 
     return (
@@ -76,15 +76,17 @@ class App extends Component {
         <div className={css(styles.body)}>
           <Header />
           <div className='App-body'>
-            {isLoggedIn ? (
-              <BodySectionWithMarginBottom title='Course list'>
-                <CourseList listCourses={listCourses} />
-              </BodySectionWithMarginBottom>
-            ) : (
-              <BodySectionWithMarginBottom title='Log in to continue'>
-                <Login />
-              </BodySectionWithMarginBottom>
-            )}
+            {isLoggedIn
+              ? (
+                <BodySectionWithMarginBottom title='Course list'>
+                  <CourseList listCourses={listCourses} />
+                </BodySectionWithMarginBottom>
+                )
+              : (
+                <BodySectionWithMarginBottom title='Log in to continue'>
+                  <Login />
+                </BodySectionWithMarginBottom>
+                )}
             <BodySection title='News from the School'>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
@@ -112,24 +114,24 @@ const styles = StyleSheet.create({
   body: {
     fontSize: '16px',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
 
   footer: {
     borderTop: '3px solid #E0354B',
     width: '98%',
-    textAlign: 'center',
-  },
+    textAlign: 'center'
+  }
 });
 
 App.defaultProps = {
   isLoggedIn: false,
-  logOut: () => {},
+  logOut: () => {}
 };
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
-  logOut: PropTypes.func,
+  logOut: PropTypes.func
 };
 
 export default App;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-export default function Header() {
+export default function Header () {
   return (
     <div className={css(styles.header)}>
       <img
@@ -21,11 +21,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     fontSize: '1rem',
     color: '#e0354b',
-    borderBottom: '3px solid #e0354b',
+    borderBottom: '3px solid #e0354b'
   },
 
   logo: {
     width: '200px',
-    height: '200px',
-  },
+    height: '200px'
+  }
 });

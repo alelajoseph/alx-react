@@ -5,14 +5,14 @@ import NotificationItemShape from './NotificationItemShape';
 import NotificationItem from './NotificationItem';
 
 class Notifications extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.markAsRead = this.markAsRead.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate (nextProps) {
     return (
       nextProps.listNotifications.length >
         this.props.listNotifications.length ||
@@ -20,20 +20,20 @@ class Notifications extends React.Component {
     );
   }
 
-  handleClose() {
+  handleClose () {
     console.log('Close button has been clicked');
   }
 
-  markAsRead(id) {
+  markAsRead (id) {
     console.log(`Notification ${id} has been marked as read`);
   }
 
-  render() {
+  render () {
     const {
       displayDrawer,
       listNotifications,
       handleDisplayDrawer,
-      handleHideDrawer,
+      handleHideDrawer
     } = this.props;
 
     const displayMenu = displayDrawer ? styles.HideMenu : styles.MenuItem;
@@ -66,31 +66,33 @@ class Notifications extends React.Component {
                 />
               </button>
             </p>
-            {listNotifications.length === 0 ? (
-              <p className={css(styles.Paragraph)}>
-                No new notification for now
-              </p>
-            ) : (
-              <ul className={css(styles.List)}>
-                {listNotifications.map((notification) => {
-                  const props = {
-                    type: notification.type,
-                    ...(notification.value
-                      ? { value: notification.value }
-                      : { html: notification.html }),
-                  };
+            {listNotifications.length === 0
+              ? (
+                <p className={css(styles.Paragraph)}>
+                  No new notification for now
+                </p>
+                )
+              : (
+                <ul className={css(styles.List)}>
+                  {listNotifications.map((notification) => {
+                    const props = {
+                      type: notification.type,
+                      ...(notification.value
+                        ? { value: notification.value }
+                        : { html: notification.html })
+                    };
 
-                  return (
-                    <NotificationItem
-                      key={notification.id}
-                      {...props}
-                      id={notification.id}
-                      markAsRead={this.markAsRead}
-                    />
-                  );
-                })}
-              </ul>
-            )}
+                    return (
+                      <NotificationItem
+                        key={notification.id}
+                        {...props}
+                        id={notification.id}
+                        markAsRead={this.markAsRead}
+                      />
+                    );
+                  })}
+                </ul>
+                )}
           </div>
         )}
       </>
@@ -100,24 +102,24 @@ class Notifications extends React.Component {
 
 const fadeIn = {
   from: {
-    opacity: 0.5,
+    opacity: 0.5
   },
 
   to: {
-    opacity: 1,
-  },
+    opacity: 1
+  }
 };
 
 const bounce = {
   '25%': {
-    transform: 'translateY(0px)',
+    transform: 'translateY(0px)'
   },
   '50%': {
-    transform: 'translateY(-5px)',
+    transform: 'translateY(-5px)'
   },
   '75%': {
-    transform: 'translateY(5px)',
-  },
+    transform: 'translateY(5px)'
+  }
 };
 
 const styles = StyleSheet.create({
@@ -137,8 +139,8 @@ const styles = StyleSheet.create({
       padding: '0',
       margin: '0',
       right: '0',
-      top: 0,
-    },
+      top: 0
+    }
   },
 
   MenuItem: {
@@ -152,48 +154,48 @@ const styles = StyleSheet.create({
     ':hover': {
       animationName: [fadeIn, bounce],
       animationDuration: '1s, 0.5s',
-      animationIterationCount: '3, 3',
-    },
+      animationIterationCount: '3, 3'
+    }
   },
 
   HideMenu: {
-    display: 'none',
+    display: 'none'
   },
 
   Button: {
     backgroundColor: '#fff',
     border: 'none',
     cursor: 'pointer',
-    marginLeft: '10px',
+    marginLeft: '10px'
   },
 
   CloseImg: {
-    width: '8px',
+    width: '8px'
   },
 
   Paragraph: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginTop: '0.5em',
+    marginTop: '0.5em'
   },
 
   List: {
     '@media only screen and (max-width: 900px)': {
-      padding: 0,
-    },
-  },
+      padding: 0
+    }
+  }
 });
 
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func.isRequired,
-  handleHideDrawer: PropTypes.func.isRequired,
+  handleHideDrawer: PropTypes.func.isRequired
 };
 
 Notifications.defaultProps = {
   displayDrawer: false,
-  listNotifications: [],
+  listNotifications: []
 };
 
 export default Notifications;
