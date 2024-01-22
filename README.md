@@ -9,3 +9,4 @@
 | 0x02. React props		| Front-end, JavaScript, ES6, React	|
 | 0x03. React component		| Front-end, JavaScript, ES6, React	|
 | 0x04. React inline styling	| Front-end, JavaScript, ES6, React	|
+| 0x05. React state		| Front-end, JavaScript, ES6, React	|
