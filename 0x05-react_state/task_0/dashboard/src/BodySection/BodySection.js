@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
 });
 
 BodySection.propTypes = {
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node
+  title: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default BodySection;

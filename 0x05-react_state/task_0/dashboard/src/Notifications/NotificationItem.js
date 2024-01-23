@@ -52,13 +52,13 @@ NotificationItem.defaulProps = {
 };
 
 NotificationItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  markAsRead: PropTypes.func.isRequired,
+  id: PropTypes.number,
+  markAsRead: PropTypes.func,
   html: PropTypes.shape({
-    __html: PropTypes.string
+    __html: PropTypes.string,
   }),
   type: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.string,
 };
 
 export default NotificationItem;
