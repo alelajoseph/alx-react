@@ -1,4 +1,4 @@
-import { List } from 'immutable';
+import { Map } from 'immutable';
 
 export const map = Map({
   1: 'Liam',
