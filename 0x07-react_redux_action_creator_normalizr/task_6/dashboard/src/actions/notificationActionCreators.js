@@ -13,3 +13,13 @@ export const setNotificationFilter = (filter) => {
     filter,
   };
 };
+
+// Bound actions
+
+export const boundMarkAsAread = (index) => (dispatch) => {
+  dispatch(markAsAread(index))
+}
+
+export const boundSetNotificationFilter = (filter) => (dispatch) => {
+  dispatch(setNotificationFilter(filter))
+}
