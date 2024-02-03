@@ -23,21 +23,3 @@ export const displayNotificationDrawer = () => {
 export const hideNotificationDrawer = () => {
   return { type: HIDE_NOTIFICATION_DRAWER };
 };
-
-// Bounded actions
-
-export const boundLogin = (email, password) => (dispatch) => {
-  dispatch(login(email, password))
-}
-
-export const dispatchLogout = () => dispatch => {
-  dispatch(logout())
-}
-
-export const boundDisplayNotificationDrawer = () => (dispatch) => {
-  dispatch(displayNotificationDrawer())
-}
-
-export const boundHideNotificationDrawer = () => (dispatch) => {
-  dispatch(hideNotificationDrawer())
-}
