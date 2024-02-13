@@ -13,3 +13,4 @@
 | 0x06. React Immutable				| Front-end, JavaScript, ES6, React	|
 | 0x07. React Redux action creator+normalizr	| Front-end, JavaScript, ES6, React	|
 | 0x08. React Redux reducer+selector		| Front-end, JavaScript, ES6, React	|
+| 0x09. React Redux Connectors and Providers	| Front-end, JavaScript, ES6, React	|
