@@ -30,8 +30,6 @@ class App extends Component {
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
-    this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
     this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
@@ -62,18 +60,6 @@ class App extends Component {
       alert('Logging you out');
       this.logOut();
     }
-  }
-
-  handleDisplayDrawer() {
-    this.setState({
-      displayDrawer: true,
-    });
-  }
-
-  handleHideDrawer() {
-    this.setState({
-      displayDrawer: false,
-    });
   }
 
   markNotificationAsRead(id) {
@@ -114,8 +100,6 @@ class App extends Component {
         <Notifications
           listNotifications={listNotifications}
           displayDrawer={displayDrawer}
-          handleDisplayDrawer={this.handleDisplayDrawer}
-          handleHideDrawer={this.handleHideDrawer}
           markNotificationAsRead={this.markNotificationAsRead}
         />
         <div className={css(styles.body)}>
@@ -188,7 +172,7 @@ export const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = {
+export const mapDispatchToProps = {
   displayNotificationDrawer,
   hideNotificationDrawer,
 };
