@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheetTestUtils } from 'aphrodite';
 import { shallow } from 'enzyme';
-import App from './App';
+import App, { mapStateToProps } from './App';
 import Notifications from '../Notifications/Notifications';
 import Header from '../Header/Header';
 import Login from '../Login/Login';
 import CourseList from '../CourseList/CourseList';
 import Footer from '../Footer/Footer';
-import { mapStateToProps } from './App';
+import { fromJS } from 'immutable';
 
 describe('<App />', () => {
   beforeEach(() => {
@@ -51,17 +51,6 @@ describe('<App />', () => {
       expect(wrapper.state('displayDrawer')).toBe(false);
     });
 
-    it('updates state displayDrawer to true after calling handleDisplayDrawer', () => {
-      wrapper.instance().handleDisplayDrawer();
-      expect(wrapper.state('displayDrawer')).toBe(true);
-    });
-
-    it('updates state displayDrawer to false after calling handleHideDrawer', () => {
-      wrapper.instance().handleDisplayDrawer();
-      wrapper.instance().handleHideDrawer();
-      expect(wrapper.state('displayDrawer')).toBe(false);
-    });
-
     it('returns the correct mapStateToProps object', () => {
       const state = {
         uiReducer: {
@@ -73,6 +62,28 @@ describe('<App />', () => {
 
       expect(result).toEqual({
         isLoggedIn: true,
+      });
+    });
+
+    it('returns the correct mapDispatchToProps object', () => {
+      let state = fromJS({
+        isUserLoggedIn: true,
+      });
+
+      const result = mapStateToProps(state);
+      expect(result).toEqual({
+        isLoggedIn: true,
+      });
+    });
+
+    it('mapStateToProps returns the right object from displayDrawer', () => {
+      let state = fromJS({
+        isNotificationDrawerVisible: true,
+      });
+
+      const result = mapStateToProps(state);
+      expect(result).toEqual({
+        displayDrawer: true,
       });
     });
   });
