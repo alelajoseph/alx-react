@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.get('isUserLoggedIn'),
   };
