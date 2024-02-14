@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 import { AppContext } from '../App/AppContext';
+import { logOut } from '../actions/uiActionCreators';
 import headerLogo from '../assets/holberton_logo.jpg';
 
-class Header extends Component {
-  static contextType = AppContext;
-
+export class Header extends Component {
   render() {
-    const { user, logOut } = this.context;
+    const { user, logOut } = this.props;
 
     return (
       <div className={css(styles.header)}>
@@ -77,4 +78,28 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+Header.contextType = AppContext;
+
+Header.propTypes = {
+  user: PropTypes.object,
+  logOut: PropTypes.func,
+};
+
+Header.defaultProps = {
+  user: null,
+  logOut: () => {},
+};
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.get('user'),
+  };
+};
+
+const mapDispatchToProps = {
+  logOut,
+};
+
+// export default Header;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
