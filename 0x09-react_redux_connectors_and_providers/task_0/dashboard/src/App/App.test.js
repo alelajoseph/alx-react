@@ -7,6 +7,7 @@ import Header from '../Header/Header';
 import Login from '../Login/Login';
 import CourseList from '../CourseList/CourseList';
 import Footer from '../Footer/Footer';
+import { mapStateToProps } from './App';
 
 describe('<App />', () => {
   beforeEach(() => {
@@ -59,6 +60,20 @@ describe('<App />', () => {
       wrapper.instance().handleDisplayDrawer();
       wrapper.instance().handleHideDrawer();
       expect(wrapper.state('displayDrawer')).toBe(false);
+    });
+
+    it('returns the correct mapStateToProps object', () => {
+      const state = {
+        uiReducer: {
+          isUserLoggedIn: true,
+        },
+      };
+
+      const result = mapStateToProps(state);
+
+      expect(result).toEqual({
+        isLoggedIn: true,
+      });
     });
   });
 
