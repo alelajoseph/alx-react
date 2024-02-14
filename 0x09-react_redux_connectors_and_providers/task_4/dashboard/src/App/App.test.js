@@ -1,8 +1,9 @@
 import React from 'react';
+import { fromJS } from 'immutable';
 import { StyleSheetTestUtils } from 'aphrodite';
 import { shallow } from 'enzyme';
 import App, { listNotifications, mapStateToProps } from './App';
-import { fromJS } from 'immutable';
+import uiReducer, { initialUiState } from '../reducers/uiReducer';
 
 describe('<App />', () => {
   beforeAll(() => {
