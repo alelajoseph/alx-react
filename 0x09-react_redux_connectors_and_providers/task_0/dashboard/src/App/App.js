@@ -10,6 +10,7 @@ import { getLatestNotification } from '../utils';
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import BodySection from '../BodySection/BodySection';
 import { AppContext } from './AppContext';
+import { uiReducer } from '../reducers/uiReducer';
 
 class App extends Component {
   constructor(props) {
@@ -90,7 +91,8 @@ class App extends Component {
   }
 
   render() {
-    const { user, displayDrawer, listNotifications } = this.state;
+    const { user, listNotifications } = this.state;
+    const { isLoggedIn, displayDrawer } = this.props;
 
     const listCourses = [
       { id: 1, name: 'ES6', credit: 60 },
@@ -159,6 +161,7 @@ const styles = StyleSheet.create({
 export const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.get('isUserLoggedIn'),
+    displayDrawer: state.uireducer.isNotificationDrawerVisible,
   };
 };
 
