@@ -14,6 +14,8 @@ import { AppContext } from './AppContext';
 import {
   displayNotificationDrawer,
   hideNotificationDrawer,
+  loginRequest,
+  logout,
 } from '../actions/uiActionCreators';
 
 class App extends Component {
@@ -81,12 +83,14 @@ class App extends Component {
   }
 
   render() {
-    const { user, logout, listNotifications } = this.state;
+    const { user, listNotifications } = this.state;
     const {
       isLoggedIn,
       displayDrawer,
       displayNotificationDrawer,
       hideNotificationDrawer,
+      logIn,
+      logOut,
     } = this.props;
 
     const listCourses = [
@@ -142,6 +146,7 @@ App.defaultProps = {
   displayDrawer: false,
   displayNotificationDrawer: () => {},
   hideNotificationDrawer: () => {},
+  logIn: () => {},
 };
 
 App.propTypes = {
@@ -149,6 +154,7 @@ App.propTypes = {
   displayDrawer: PropTypes.bool,
   displayNotificationDrawer: PropTypes.func,
   hideNotificationDrawer: PropTypes.func,
+  logIn: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
@@ -175,6 +181,8 @@ export const mapStateToProps = (state) => {
 export const mapDispatchToProps = {
   displayNotificationDrawer,
   hideNotificationDrawer,
+  login: loginRequest,
+  logout,
 };
 
 // export default App;
