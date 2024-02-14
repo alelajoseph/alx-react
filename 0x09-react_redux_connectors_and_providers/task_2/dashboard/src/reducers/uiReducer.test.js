@@ -1,5 +1,4 @@
-import { Map } from 'immutable';
-import uiReducer from './uiReducer';
+import uiReducer, { initialState } from './uiReducer';
 import {
   DISPLAY_NOTIFICATION_DRAWER,
   HIDE_NOTIFICATION_DRAWER,
@@ -9,12 +8,6 @@ import {
 } from '../actions/uiActionTypes';
 
 describe('uiReducer function', () => {
-  const initialState = Map({
-    isNotificationDrawerVisible: false,
-    isUserLoggedIn: false,
-    user: Map({}),
-  });
-
   it('returns state equal to initial state when no action is passed', () => {
     expect(uiReducer(undefined, {})).toEqual(initialState);
   });
