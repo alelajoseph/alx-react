@@ -1,17 +1,15 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../App/AppContext';
-import { getFullYear, getFooterCopy } from '../utils';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
+import { getFullYear, getFooterCopy } from '../utils';
 
-export default function Footer() {
-  const { user } = useContext(AppContext);
-  const isIndex = true;
-
+export function Footer({ user }) {
   return (
     <>
       <p>
         <em>
-          Copyright {getFullYear()} - {getFooterCopy(isIndex)}
+          Copyright {getFullYear()} - {getFooterCopy(true)}
         </em>
       </p>
       {user.isLoggedIn && (
@@ -25,6 +23,14 @@ export default function Footer() {
   );
 }
 
+Footer.defaultProps = {
+  user: null,
+};
+
+Footer.propTypes = {
+  user: PropTypes.object,
+};
+
 const styles = StyleSheet.create({
   contact: {
     color: '#E0354B',
@@ -34,3 +40,11 @@ const styles = StyleSheet.create({
     },
   },
 });
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.get('user'),
+  };
+};
+
+export default connect(mapStateToProps, null)(Footer);
