@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 import NotificationItemShape from './NotificationItemShape';
 import NotificationItem from './NotificationItem';
+import { fetchNotifications } from '../actions/notificationActionCreators';
 
 class Notifications extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.handleClose = this.handleClose.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchNotifications();
   }
 
   handleClose() {
@@ -178,10 +184,11 @@ const styles = StyleSheet.create({
 
 Notifications.defaultProps = {
   displayDrawer: false,
-  listNotifications: [],
+  listNotifications: null,
   handleHideDrawer: () => {},
   handleDisplayDrawer: () => {},
   markNotificationAsRead: () => {},
+  fetchNotifications: () => {},
 };
 
 Notifications.propTypes = {
@@ -192,4 +199,16 @@ Notifications.propTypes = {
   markNotificationAsRead: PropTypes.func,
 };
 
-export default Notifications;
+const mapStateToProps = (state) => {
+  return {
+    listNotifications: state.notifications.get('messages'),
+  };
+};
+
+const mapDispatchToProps = {
+  fetchNotifications,
+};
+
+// export default Notifications;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notifications);
