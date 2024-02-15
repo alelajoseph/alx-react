@@ -7,6 +7,7 @@ import { getUnreadNotifications } from '../selectors/notificationSelector';
 import {
   fetchNotifications,
   markAsAread,
+  setNotificationFilter,
 } from '../actions/notificationActionCreators';
 
 class Notifications extends React.PureComponent {
@@ -30,6 +31,7 @@ class Notifications extends React.PureComponent {
       listNotifications,
       handleDisplayDrawer,
       handleHideDrawer,
+      setNotificationFilter,
     } = this.props;
 
     const displayMenu = displayDrawer ? styles.HideMenu : styles.MenuItem;
@@ -62,6 +64,20 @@ class Notifications extends React.PureComponent {
                 />
               </button>
             </p>
+            <button
+              type='button'
+              id='btnUrgentFilter'
+              onClick={setNotificationFilter('URGENT')}
+            >
+              ‼️
+            </button>
+            <button
+              type='button'
+              id='btnDefaultFilter'
+              onClick={setNotificationFilter('DEFAULT')}
+            >
+              💠
+            </button>
             {listNotifications.length === 0 ? (
               <p className={css(styles.Paragraph)}>
                 No new notification for now
@@ -189,12 +205,14 @@ Notifications.defaultProps = {
   handleHideDrawer: () => {},
   handleDisplayDrawer: () => {},
   fetchNotifications: () => {},
+  setNotificationFilter: () => {},
 };
 
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
+  setNotificationFilter: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
@@ -208,6 +226,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   fetchNotifications,
   markNotificationsAsRead: markAsAread,
+  setNotificationFilter,
 };
 
 // export default Notifications;
