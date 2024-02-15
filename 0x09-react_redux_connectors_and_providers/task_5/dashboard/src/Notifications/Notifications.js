@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
-import NotificationItemShape from './NotificationItemShape';
 import NotificationItem from './NotificationItem';
 import { fetchNotifications } from '../actions/notificationActionCreators';
 
@@ -27,7 +26,6 @@ class Notifications extends React.PureComponent {
       listNotifications,
       handleDisplayDrawer,
       handleHideDrawer,
-      markNotificationAsRead,
     } = this.props;
 
     const displayMenu = displayDrawer ? styles.HideMenu : styles.MenuItem;
@@ -79,7 +77,6 @@ class Notifications extends React.PureComponent {
                       key={notification.id}
                       {...props}
                       id={notification.id}
-                      markNotificationAsRead={markNotificationAsRead}
                     />
                   );
                 })}
@@ -187,16 +184,13 @@ Notifications.defaultProps = {
   listNotifications: null,
   handleHideDrawer: () => {},
   handleDisplayDrawer: () => {},
-  markNotificationAsRead: () => {},
   fetchNotifications: () => {},
 };
 
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
-  listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
-  markNotificationAsRead: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

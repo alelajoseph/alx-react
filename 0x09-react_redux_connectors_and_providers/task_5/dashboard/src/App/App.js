@@ -34,7 +34,6 @@ class App extends Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
-    this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
   }
 
   logIn(email, password) {
@@ -62,16 +61,6 @@ class App extends Component {
       alert('Logging you out');
       this.logOut();
     }
-  }
-
-  markNotificationAsRead(id) {
-    const { listNotifications } = this.state;
-
-    this.setState({
-      listNotifications: listNotifications.filter(
-        (notification) => notification.id !== id
-      ),
-    });
   }
 
   componentDidMount() {
@@ -104,7 +93,6 @@ class App extends Component {
         <Notifications
           listNotifications={listNotifications}
           displayDrawer={displayDrawer}
-          markNotificationAsRead={this.markNotificationAsRead}
         />
         <div className={css(styles.body)}>
           <Header />
