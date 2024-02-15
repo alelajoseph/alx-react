@@ -2,8 +2,7 @@ import React from 'react';
 import { fromJS } from 'immutable';
 import { StyleSheetTestUtils } from 'aphrodite';
 import { shallow } from 'enzyme';
-import App, { listNotifications, mapStateToProps } from './App';
-import uiReducer, { initialUiState } from '../reducers/uiReducer';
+import App, { mapStateToProps } from './App';
 
 describe('<App />', () => {
   beforeAll(() => {
@@ -85,31 +84,6 @@ describe('<App />', () => {
       expect(result).toEqual({
         displayDrawer: true,
       });
-    });
-  });
-
-  describe('markNotificationAsRead', () => {
-    const wrapper = shallow(<App />);
-    const instance = wrapper.instance();
-
-    it('returns the expected state', () => {
-      expect(wrapper.state().listNotifications).toEqual(listNotifications);
-
-      instance.markNotificationAsRead(4);
-
-      expect(wrapper.state().listNotifications).toEqual(listNotifications);
-
-      instance.markNotificationAsRead(3);
-
-      expect(wrapper.state().listNotifications).toEqual(
-        listNotifications.slice(0, 2)
-      );
-
-      instance.markNotificationAsRead(1);
-
-      expect(wrapper.state().listNotifications).toEqual(
-        listNotifications.slice(1, 2)
-      );
     });
   });
 

@@ -189,4 +189,13 @@ describe('<Notifications />', () => {
     wrapper.find('button[aria-label="Close"]').simulate('click');
     expect(handleHideDrawerMock).toHaveBeenCalled();
   });
+
+  it('calls fetchNotifications when the component is mounted', () => {
+    const fetchNotificationsMock = jest.fn();
+
+    shallow(<Notifications fetchNotifications={fetchNotificationsMock} />);
+
+    expect(fetchNotificationsMock).toHaveBeenCalled();
+    jest.restoreAllMocks();
+  });
 });
