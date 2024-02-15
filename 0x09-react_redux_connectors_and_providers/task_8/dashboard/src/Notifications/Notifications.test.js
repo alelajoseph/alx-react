@@ -5,8 +5,12 @@ import Notifications from './Notifications';
 import NotificationItem from './NotificationItem';
 
 describe('<Notifications />', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     StyleSheetTestUtils.suppressStyleInjection();
+  });
+
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
   });
 
   it('renders without crashing', () => {
@@ -196,6 +200,29 @@ describe('<Notifications />', () => {
     shallow(<Notifications fetchNotifications={fetchNotificationsMock} />);
 
     expect(fetchNotificationsMock).toHaveBeenCalled();
+    jest.restoreAllMocks();
+  });
+
+  describe('notifications filter', () => {
+    const setNotificationFilterMock = jest.fn();
+
+    const wrapper = shallow(
+      <Notifications
+        displayDrawer={true}
+        setNotificationFilter={setNotificationFilterMock}
+      />
+    );
+
+    it('calls setNotificationFilter with URGENT when the first button is clicked', () => {
+      wrapper.find('#btnUrgentFilter').simulate('click');
+      expect(setNotificationFilterMock).toHaveBeenCalledWith(1, 'URGENT');
+    });
+
+    it('calls setNotificationFilter with DEFAULT when the second button is clicked', () => {
+      wrapper.find('#btnDefaultFilter').simulate('click');
+      expect(setNotificationFilterMock).toHaveBeenCalledWith(2, 'DEFAULT');
+    });
+
     jest.restoreAllMocks();
   });
 });
