@@ -23,8 +23,8 @@ describe('<CourseList />', () => {
       {
         id: 103,
         type: 'urgent',
-        html: { __html: 'Urgent requirement - complete by EOD' }
-      }
+        html: { __html: 'Urgent requirement - complete by EOD' },
+      },
     ];
 
     beforeEach(() => {
@@ -33,6 +33,39 @@ describe('<CourseList />', () => {
 
     it('renders 5 different rows', () => {
       expect(wrapper.find(CourseListRow)).toHaveLength(5);
+    });
+
+    it('dispatches action when component is mounted', () => {
+      const fetchCourses = jest.fn();
+      shallow(<CourseList fetchCourses={fetchCourses} />);
+
+      expect(fetchCourses).toHaveBeenCalled();
+      jest.restoreAllMocks();
+    });
+
+    it('dispatches the two actions correctly when onChangeRow is called', () => {
+      const fetchCourses = jest.fn();
+      const selectCourse = jest.fn();
+      const unSelectCourse = jest.fn();
+
+      const wrapper = shallow(
+        <CourseList
+          fetchCourses={fetchCourses}
+          selectCourse={selectCourse}
+          unSelectCourse={unSelectCourse}
+        />
+      );
+
+      const instance = wrapper.instance();
+      instance.onChangeRow('1', true);
+
+      expect(selectCourse).toHaveBeenCalled();
+
+      instance.onChangeRow('1', false);
+
+      expect(unSelectCourse).toHaveBeenCalled();
+
+      jest.restoreAllMocks();
     });
   });
 
