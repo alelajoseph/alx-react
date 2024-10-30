@@ -1,4 +1,4 @@
-# Basic React Application
+# Basic React Applications
 
 ## Screenshot
 
